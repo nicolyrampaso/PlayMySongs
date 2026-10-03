@@ -156,6 +156,10 @@ input, select {
     border-radius: 5px;
 }
 
+form button {
+    align-self: flex-start;
+}
+
 input:focus, select:focus {
     outline: none;
     border-color: var(--color3);

@@ -8,7 +8,7 @@
     <script src="js/fetchfunctions.js" type="text/javascript"></script>
     <script src="js/envio.js" type="text/javascript"></script>
 </head>
-<body>
+<body onload="carregarEstilos()">
     <header>
         <a href="index.html"><img src="img/logo.png" alt="PlayMySongs"></a>
         <nav>
@@ -19,7 +19,27 @@
     </header>
 
     <main>
-        <!-- conteúdo da página: Enviar música -->
+        <h2>Enviar música</h2>
+        <div class="cartao">
+            <form id="fdados" method="POST" enctype="multipart/form-data" onsubmit="enviarMusica(event)">
+                <label>Estilo
+                    <select id="estilo" name="estilo">
+                        <option value="">Selecione o estilo</option>
+                    </select>
+                </label>
+                <label>Nome da música
+                    <input type="text" id="nome" name="nome">
+                </label>
+                <label>Artista
+                    <input type="text" id="artista" name="artista" placeholder="Cantor, banda, dupla...">
+                </label>
+                <label>Arquivo (.mp3 ou .ogg)
+                    <input type="file" id="arquivo" name="arquivo" accept=".mp3,.ogg">
+                </label>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+        <div id="enviada"></div>
     </main>
 
     <footer>PlayMySongs — Música sem fronteiras</footer>

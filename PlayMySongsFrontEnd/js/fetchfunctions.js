@@ -34,3 +34,13 @@ function montarPlayer(musica) {
                 <source src="${escaparHtml(musica.url)}" type="${tipo}">
             </audio>`;
 }
+
+/* devolve o HTML do cartão de uma música (usado no envio e na busca) */
+function montarCartaoMusica(musica) {
+    return `<div class="cartao">
+                <h3>${escaparHtml(musica.nome)}</h3>
+                <p><span class="rotulo">Artista:</span> ${escaparHtml(musica.artista)}</p>
+                <p><span class="rotulo">Estilo:</span> ${escaparHtml(musica.estilo)}</p>
+                ${montarPlayer(musica)}
+            </div>`;
+}
