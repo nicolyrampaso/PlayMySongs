@@ -11,6 +11,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.text.Normalizer;
+import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 public class MusicaService {
@@ -55,5 +57,10 @@ public class MusicaService {
         Files.copy(arquivo.getInputStream(), destino, StandardCopyOption.REPLACE_EXISTING);
 
         return musicaRepository.save(new Musica(nome, estilo, artista, nomeArquivo));
+    }
+
+    // Pattern.quote faz a chave ser buscada como texto literal (evita erro com "(", "?", etc.)
+    public List<Musica> buscarMusicas(String chave) {
+        return musicaRepository.buscarMusicasPorChave(Pattern.quote(chave));
     }
 }

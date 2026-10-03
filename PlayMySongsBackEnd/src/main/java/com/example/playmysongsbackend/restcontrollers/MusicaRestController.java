@@ -55,4 +55,14 @@ public class MusicaRestController {
             return ResponseEntity.badRequest().body(new Erro(e.getMessage()));
         }
     }
+
+    @GetMapping(value = "find-musics")
+    public ResponseEntity<Object> buscarMusicas(@RequestParam(value = "chave", defaultValue = "") String chave) {
+        List<Musica> musicaList = musicaService.buscarMusicas(chave);
+        if (musicaList.isEmpty())
+            return ResponseEntity.badRequest().body(new Erro("Nenhuma música encontrada"));
+        for (Musica musica : musicaList)
+            musica.setUrl(getHostStatic() + musica.getArquivo());
+        return ResponseEntity.ok(musicaList);
+    }
 }
