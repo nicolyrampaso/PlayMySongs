@@ -14,7 +14,9 @@ back-end nele, como cadastrar músicas e o que conferir antes da apresentação.
   - Banco: `play_my_songs`
   - Collection: `musicas`
 - O back-end lê a string de conexão da **variável de ambiente `MONGODB_URI`**.
-  Se ela não estiver definida, ele tenta usar um MongoDB local (`mongodb://localhost:27017`).
+  Se ela não estiver definida, ele tenta usar um MongoDB local (`mongodb://localhost:27017`) — que ninguém do
+  grupo tem instalado. Aí a página de estilos funciona (não usa o banco), mas **envio e busca ficam carregando
+  ~30 s e dão erro**. Ou seja: **sem configurar a variável (item 4), o projeto não funciona.**
 - O banco guarda só os **dados** da música (nome, estilo, artista e nome do arquivo).
   **O arquivo `.mp3`/`.ogg` fica no computador de quem fez o upload**, na pasta
   `PlayMySongsBackEnd/src/main/resources/static/uploads/` — essa pasta **não** vai para o GitHub.
@@ -65,24 +67,30 @@ Erro comum: deixar `<db_username>` ou `<senha>` com os sinais `< >` — eles **n
 
 ### Pré-requisitos
 - Java 25 ou superior instalado (`java -version` no terminal).
-- Projeto clonado do GitHub.
+- Projeto clonado do GitHub ou extraído do `.zip`.
 
 ### Opção A — IntelliJ (recomendado, igual no Windows e no Mac)
 
 1. Abra no IntelliJ a pasta **`PlayMySongsBackEnd`** (não a pasta `PlayMySongs` de cima — o back-end salva as
    músicas relativo à pasta em que roda; se abrir a pasta errada, os arquivos vão parar no lugar errado).
-2. No topo, ao lado do botão ▶, clique no nome da configuração (`PlayMySongsBackEndApplication`) → **Edit Configurations...**
-3. Procure **Environment variables** (se não aparecer: **Modify options → Environment variables**) e coloque:
+2. Se o back-end já estiver rodando, pare com **■** (a variável só vale depois de rodar de novo).
+3. No topo, ao lado do botão ▶, clique no nome da configuração (`PlayMySongsBackEndApplication`) → **Edit Configurations...**
+4. O campo **Environment variables** vem **escondido** na configuração Spring Boot. Para mostrar:
+   clique no link azul **Modify options** (à direita, perto de *Build and run*) → na seção **Operating System**,
+   marque **Environment variables**.
+5. No campo que apareceu, cole:
    ```
    MONGODB_URI=mongodb+srv://playmysongs:SENHA_AQUI@cluster0.3nrhwoe.mongodb.net/?appName=Cluster0
    ```
-4. Confira se o **Working directory** é a pasta `PlayMySongsBackEnd`.
-5. **OK** e rode com ▶.
+6. Confira se o **Working directory** é a pasta `PlayMySongsBackEnd`.
+7. **OK** e rode com ▶.
 
 Essa configuração fica na pasta `.idea`, que está no `.gitignore` — a senha não vai para o GitHub.
+Se não achar o campo de jeito nenhum, use a **Opção B** (terminal), que funciona sempre.
 
 ### Opção B — Terminal
 
+Antes, pare o back-end no IntelliJ (■), senão dá `Port 8080 was already in use`.
 Na pasta `PlayMySongsBackEnd/`:
 
 **Mac / Linux**
@@ -104,8 +112,15 @@ $env:MONGODB_URI="mongodb+srv://playmysongs:SENHA_AQUI@cluster0.3nrhwoe.mongodb.
 ```
 
 A variável vale só para aquela janela do terminal; ao abrir outra, defina de novo.
+Deixe a janela aberta enquanto usa o site; para parar, **Ctrl+C**.
 
 Quando aparecer `Started PlayMySongsBackEndApplication` no log, a API está em `http://localhost:8080`.
+
+### Como saber se pegou
+
+No log do back-end, procure o endereço do banco:
+- aparece `3nrhwoe.mongodb.net` → **certo**, está usando o Atlas;
+- aparece `localhost:27017` → a variável **não** pegou (confira o item 4 e rode de novo).
 
 ---
 
@@ -164,7 +179,7 @@ collection `musicas`.
 |---|---|---|
 | Upload demora ~30 s e dá erro `Timed out after 30000 ms` | IP não liberado no Atlas | Item 2.3 (IP Access List `0.0.0.0/0`) |
 | Erro `bad auth` / `Exception authenticating` | Usuário ou senha errados, ou `< >` na string | Revise a string (item 3) |
-| Erro com `localhost:27017` no log | Variável `MONGODB_URI` não definida | Item 4 (configure a variável e rode de novo) |
+| Envio/busca ficam carregando e a página mostra `Timed out while waiting for a server ... localhost:27017 ... Connection refused` (ou `localhost:27017` no log) | Variável `MONGODB_URI` não definida, ou o back-end não foi reiniciado depois de definir | Item 4 (configure a variável, pare com ■ e rode de novo) |
 | `url` da música dá 404 | O arquivo foi enviado de outro computador | Envie a música de novo no computador atual |
 | `Port 8080 was already in use` | Já tem um back-end rodando | Pare a outra execução (botão ■ no IntelliJ) |
 | Erro de tamanho no upload | Arquivo maior que 20 MB | Use um arquivo menor |
