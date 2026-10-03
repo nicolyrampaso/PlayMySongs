@@ -33,6 +33,15 @@ A API sobe em `http://localhost:8080`. O banco usado é o `play_my_songs` (criad
 Para usar o MongoDB Atlas, defina a variável de ambiente `MONGODB_URI` com a string de conexão
 (veja o [guia](GUIA_MONGODB_ATLAS.md)). A senha **nunca** deve ser colocada nos arquivos do projeto.
 
+## Front-end
+
+Com o back-end rodando em `localhost:8080`, abra `PlayMySongsFrontEnd/index.html` com o
+**Live Server** do VS Code (botão direito → *Open with Live Server*) ou direto no navegador.
+
+- `index.html` — página inicial
+- `envio.html` — envio de músicas (estilo, nome, artista e arquivo `.mp3`/`.ogg`)
+- `busca.html` — busca por parte do nome, estilo ou artista, com player para ouvir
+
 ## Endpoints
 
 Todos sob `http://localhost:8080/apis/`. Em caso de falha, respondem **HTTP 400** com `{"mensagem": "..."}`.
