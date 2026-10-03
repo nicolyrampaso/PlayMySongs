@@ -160,6 +160,34 @@ form button {
     align-self: flex-start;
 }
 
+/* formulário em uma linha (busca) */
+form.linha {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+form.linha label {
+    flex: 1 1 250px;
+}
+
+form.linha button {
+    align-self: auto;
+    padding: 11px 20px;
+}
+
+/* lista de cartões (resultado da busca) */
+.lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.lista .cartao {
+    flex: 1 1 380px;
+    margin-bottom: 0;
+}
+
 input:focus, select:focus {
     outline: none;
     border-color: var(--color3);

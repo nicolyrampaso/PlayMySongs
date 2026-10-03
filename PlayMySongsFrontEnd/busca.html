@@ -19,7 +19,17 @@
     </header>
 
     <main>
-        <!-- conteúdo da página: Buscar músicas -->
+        <h2>Buscar músicas</h2>
+        <div class="cartao">
+            <form id="fbusca" class="linha" onsubmit="buscarMusicas(event)">
+                <label>Chave de busca
+                    <input type="text" id="chave" name="chave" placeholder="Parte do nome, estilo ou artista">
+                </label>
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+        <p id="total" class="rotulo"></p>
+        <div id="resultado" class="lista"></div>
     </main>
 
     <footer>PlayMySongs — Música sem fronteiras</footer>
