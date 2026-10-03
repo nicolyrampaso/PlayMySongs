@@ -1,8 +1,217 @@
 /* Paleta de cores do projeto */
 :root {
-    --color1: #edd58f;
-    --color2: #c2bf92;
-    --color3: #66ac92;
-    --color4: #686077;
-    --color5: #641f5e;
+    --color1: #edd58f;  /* amarelo    */
+    --color2: #c2bf92;  /* bege       */
+    --color3: #66ac92;  /* verde      */
+    --color4: #686077;  /* cinza-roxo */
+    --color5: #641f5e;  /* roxo/vinho */
+    --fundo:  #231924;  /* fundo do logo */
+    --texto:  #fcf6ec;  /* texto do logo */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--fundo);
+    color: var(--texto);
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+a {
+    color: var(--color3);
+}
+
+a:hover {
+    color: var(--color1);
+}
+
+/* cabeçalho: logo + menu */
+header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--color4);
+}
+
+header img {
+    height: 70px;
+    display: block;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* conteúdo central */
+main {
+    flex: 1;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h2 {
+    color: var(--color1);
+}
+
+footer {
+    padding: 15px 20px;
+    text-align: center;
+    color: var(--color2);
+    border-top: 1px solid var(--color4);
+}
+
+/* home */
+.destaque {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.destaque img {
+    width: 100%;
+    max-width: 320px;
+}
+
+.subtitulo {
+    color: var(--color2);
+    font-size: 1.3em;
+    letter-spacing: 3px;
+}
+
+.opcoes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.opcoes .botao {
+    flex: 1 1 250px;
+    max-width: 300px;
+    padding: 25px;
+    font-size: 1.2em;
+}
+
+/* cartões (formulário e resultados) */
+.cartao {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--color4);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.cartao h3 {
+    margin-top: 0;
+    color: var(--color1);
+}
+
+.cartao p {
+    margin: 5px 0;
+}
+
+/* formulários */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: var(--color2);
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    font-family: inherit;
+    color: var(--texto);
+    background-color: var(--fundo);
+    border: 1px solid var(--color4);
+    border-radius: 5px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--color3);
+}
+
+/* botões e links em destaque */
+button, .botao {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-family: inherit;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: var(--fundo);
+    background-color: var(--color3);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover, .botao:hover {
+    color: var(--fundo);
+    background-color: var(--color1);
+}
+
+.rotulo {
+    color: var(--color2);
+}
+
+audio {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* aviso fixo no topo (some sozinho) */
+#mensagem {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 90%;
+    padding: 15px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 10;
+}
+
+#mensagem.sucesso {
+    background-color: var(--color3);
+    color: var(--fundo);
+}
+
+#mensagem.erro {
+    background-color: var(--color5);
+    color: var(--texto);
 }
