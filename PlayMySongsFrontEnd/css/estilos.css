@@ -131,6 +131,18 @@ footer {
     margin: 5px 0;
 }
 
+/* lista de cartões (resultado da busca) */
+.lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.lista .cartao {
+    flex: 1 1 380px;
+    margin-bottom: 0;
+}
+
 /* formulários */
 form {
     display: flex;
@@ -156,6 +168,11 @@ input, select {
     border-radius: 5px;
 }
 
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--color3);
+}
+
 form button {
     align-self: flex-start;
 }
@@ -174,23 +191,6 @@ form.linha label {
 form.linha button {
     align-self: auto;
     padding: 11px 20px;
-}
-
-/* lista de cartões (resultado da busca) */
-.lista {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.lista .cartao {
-    flex: 1 1 380px;
-    margin-bottom: 0;
-}
-
-input:focus, select:focus {
-    outline: none;
-    border-color: var(--color3);
 }
 
 /* botões e links em destaque */
